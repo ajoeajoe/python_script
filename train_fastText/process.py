@@ -23,7 +23,7 @@ for e in dir_list:
         with open(filepath,'r',encoding='utf-8') as fr:
             text = fr.read()
         seg_text = jieba.cut(text.replace("\t"," ").replace("\n"," "))
-        outline = " ".join(filter(lambda x: x not in stopwords, list(seg_text)))
+        outline = " ".join(filter(lambda x: x not in stopwords and len(x)>1, list(seg_text)))
         outline = str(outline) + ("\t__label__") + (e) + ("\n")
         if count < 10000:
             ftrain.write(outline)
